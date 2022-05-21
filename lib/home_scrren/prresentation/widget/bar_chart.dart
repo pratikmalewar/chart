@@ -37,7 +37,7 @@ class BarChart extends StatelessWidget {
             // Chart title
             title: ChartTitle(
                 text:
-                    'Bar Chart \nQuantity sales base on ship date in 4 years'),
+                    'Bar Chart \nQuantity shipped base on ship date in 4 years'),
             // Enable legend
             legend: Legend(isVisible: true),
             // Enable tooltip

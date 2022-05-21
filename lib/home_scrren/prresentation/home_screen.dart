@@ -37,11 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Obx(
           () {
             return homeController.isLoading.value == true
-                ?  Center(
+                ? Center(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const[
+                      children: const [
                         CupertinoActivityIndicator(),
                         Text("Please wait...")
                       ],
@@ -52,20 +52,72 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: homeController.chartList != null
                         ? Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: ListView.builder(
-                              itemCount: 1,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Column(
-                                  children: const[
-                                    // Text(homeController.chartList![0].state
-                                    //     .toString()),
-                                     PieChartWidget(),
-                                     BarChart(),
-                                     CompositeBarChart(),
-                                     TimeChart(),
-                                  ],
-                                );
-                              },
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  // Text(homeController.chartList![0].state
+                                  //     .toString()),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: RaisedButton(
+                                      shape: const RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20.0))),
+                                      elevation: 6,
+                                      color: Colors.cyan,
+                                      child: const Text(
+                                        'Filter',
+                                        style: TextStyle(
+                                            fontSize: 20, color: Colors.white),
+                                      ),
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: (context) {
+                                              return Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  children: <Widget>[
+                                                    ListTile(
+                                                      title:
+                                                          const Text('Segment'),
+                                                      onTap: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                    ListTile(
+                                                      title: const Text(
+                                                          'Category'),
+                                                      onTap: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                    ListTile(
+                                                      title: const Text(
+                                                          'Sub Category'),
+                                                      onTap: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            });
+                                      },
+                                    ),
+                                  ),
+                                  const PieChartWidget(),
+                                  const BarChart(),
+                                  const CompositeBarChart(),
+                                  const TimeChart(),
+                                ],
+                              ),
                             ),
                           )
                         : const SizedBox.shrink(),
@@ -76,4 +128,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
