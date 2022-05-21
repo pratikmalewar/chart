@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       elevation: 6,
                                       color: Colors.cyan,
                                       child: const Text(
-                                        'Filter',
+                                        'Filter ',
                                         style: TextStyle(
                                             fontSize: 20, color: Colors.white),
                                       ),
